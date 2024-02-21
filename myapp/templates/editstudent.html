@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Courier New;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            width: 300px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Updated CSS for the button */
+        button[type="submit"] {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Student Details</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="studentName">Student Name:</label>
+        <input type="text" name="studentName" value="{{ student.student_name }}">
+        <label for="mark1">Mark 1:</label>
+        <input type="number" name="mark1" value="{{ student.mark1 }}">
+        <label for="mark2">Mark 2:</label>
+        <input type="number" name="mark2" value="{{ student.mark2 }}">
+        <label for="mark3">Mark 3:</label>
+        <input type="number" name="mark3" value="{{ student.mark3 }}">
+        <!-- Bootstrap Button -->
+        <button type="submit" class="btn btn-primary btn-block">Update</button>
+    </form>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

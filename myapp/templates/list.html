@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- SweetAlert CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10" rel="stylesheet">
+    <style>
+        .center {
+            margin: 0 auto;
+            width: 80%; /* You can adjust the width as needed */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%; /* Make the table fill the container */
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1{
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+        }
+        body{
+            font-family: Courier New;
+        }
+    </style>
+</head>
+<body>
+<h1>Student Mark List</h1>
+<h2><a href="{% url 'student' %}" class="btn btn-primary">New Student</a></h2>
+<div class="center">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Mark-1</th>
+            <th>Mark-2</th>
+            <th>Mark-3</th>
+            <th>Total Marks</th>
+            <th>Result</th>
+            <th>Grade</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ student.student_name }}</td>
+            <td>{{ student.mark1 }}</td>
+            <td>{{ student.mark2 }}</td>
+            <td>{{ student.mark3 }}</td>
+            <td>{{ student.total_marks }}</td>
+            <td>{{ student.result }}</td>
+            <td>{{ student.grade }}</td>
+            <td><a href="{% url 'edit_student' student.id %}" class="btn btn-warning">Edit</a></td>
+            <td><button class="btn btn-danger delete-btn" data-id="{{ student.id }}">Delete</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add event listener to all delete buttons
+        var deleteButtons = document.querySelectorAll('.delete-btn');
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var studentId = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You will not be able to recover this data!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform deletion
+                        window.location.href = '/delete_student/' + studentId;
+                    }
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

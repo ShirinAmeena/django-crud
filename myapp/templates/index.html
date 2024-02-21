@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Mark List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Courier New;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn {
+            margin: 10px;
+        }
+        .center-image {
+            display: block;
+            margin: 0 auto;
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{% static 'img/student.jpg' %}" alt="Student Image" class="center-image">
+        <h1>Student Mark List</h1>
+        <a href="{% url 'list' %}" class="btn btn-primary">Student List</a>
+        <a href="{% url 'student' %}" class="btn btn-success">Add Student</a>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

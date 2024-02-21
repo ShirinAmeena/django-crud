@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Courier New;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            width: 300px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Updated CSS for the button */
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>New Student Details</h1>
+    <form id="studentForm" method="post" action="{% url 'student' %}">
+        {% csrf_token %}
+        <label for="studentName">Student Name:</label><br>
+        <input type="text" id="studentName" name="studentName"><br>
+
+        <label for="mark1">Mark 1:</label><br>
+        <input type="number" id="mark1" name="mark1" min="0" max="100"><br>
+
+        <label for="mark2">Mark 2:</label><br>
+        <input type="number" id="mark2" name="mark2" min="0" max="100"><br>
+
+        <label for="mark3">Mark 3:</label><br>
+        <input type="number" id="mark3" name="mark3" min="0" max="100"><br>
+
+        <!-- Bootstrap Button -->
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+    </form>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
